@@ -1,0 +1,1 @@
+have 2 pointer,one on each vector.
