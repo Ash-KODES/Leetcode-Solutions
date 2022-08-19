@@ -2,48 +2,31 @@ class Solution {
 public:
     int romanToInt(string s) 
     {
-        int l=s.size();
-        int a[l];
-        for(int i=0;i<l;i++)
+        // hashing->map
+        map<char,int> mp;
+        mp['I']=1;
+        mp['V']=5;
+        mp['X']=10;
+        mp['L']=50;
+        mp['C']=100;
+        mp['D']=500;
+        mp['M']=1000;
+        int ans=0;
+        if(s.size()==1)
+        return mp[s[0]];
+        for(int i=0;i<s.size();i++)
         {
-            if(s[i]=='I')
-               a[i]=1;
-            if(s[i]=='V')
-               a[i]=5;
-            if(s[i]=='X')
-                a[i]=10;
-            if(s[i]=='L')
-                a[i]=50;
-            if(s[i]=='C')
-                a[i]=100;
-            if(s[i]=='D')
-                a[i]=500;
-            if(s[i]=='M')
-                a[i]=1000;
-        }
-        int sum=0;
-        for(int i=0;i<l;i++)
-        {
-            if(i==l-1)
+            if(i+1<s.size()&&mp[s[i+1]]>mp[s[i]])
             {
-                sum+=a[i];
-                break;
-            
-            }
-            if(a[i]>=a[i+1])
-            {
-                sum+=a[i];
+                ans+=(mp[s[i+1]]-mp[s[i]]);
+                i++;
             }
             else
             {
-                sum+=a[i+1];
-                sum-=a[i];
-                i++;
+                ans+=mp[s[i]];
             }
         }
-        
-        return sum;
-        
+        return ans;
         
     }
 };
