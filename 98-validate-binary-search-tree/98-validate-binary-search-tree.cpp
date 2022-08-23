@@ -11,18 +11,29 @@
  */
 class Solution {
 public:
-    bool valid(TreeNode* root,long int l,long int r)
+    //BST--> left < root->val
+    //right> root->val
+    //if this condtion is true for all--> valid
+    //l==INT_MIN;
+    //r==INT_MAX;
+    //root
+    //left==[intmin,root->val)
+    //right==(root->val,Intmax]
+    bool helper(TreeNode* root,long int left,long int right)
     {
         if(root==NULL)
-        return 1;
-        if(root->val<=l||root->val>=r)
+        return true;
+        if(root->val>left&&root->val<right)
         {
-            return 0;
+            bool leftcall=helper(root->left,left,root->val);
+            bool rightcall=helper(root->right,root->val,right);
+            return (leftcall&&rightcall);
         }
-        return valid(root->left,l,root->val)&&valid(root->right,root->val,r);
+        else
+        return false;
     }
     bool isValidBST(TreeNode* root) 
     {
-        return valid(root,10LL*INT_MIN,10LL*INT_MAX);
+        return helper(root,10LL*INT_MIN,10LL*INT_MAX);
     }
 };
