@@ -4,6 +4,7 @@ public:
     {
         //BRUTE FORCE-o(n^3)
         //Optimal->sort then use two pointers
+        //TC-nlogn+n^2
         sort(nums.begin(),nums.end());
         int diff=INT_MAX;
         int ans;
