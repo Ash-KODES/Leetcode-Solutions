@@ -2,6 +2,7 @@ class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) 
     {
+        //THIS APPROACH ONLY VALID IN CASE OF "The first integer of each row is greater than the last integer of the previous row."
         int m=matrix[0].size();
         int n=matrix.size();
         int low=0;
