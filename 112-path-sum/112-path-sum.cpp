@@ -11,26 +11,24 @@
  */
 class Solution {
 public:
-    bool helper(TreeNode* root,int sum)
+    bool Helper(TreeNode* root,int targetSum)
     {
-        // BASE CASES
+        if(root->left==NULL&&root->right==NULL)
+        {
+            return targetSum==root->val; 
+        }
+        bool l=false;
+        if(root->left!=NULL)
+        l=Helper(root->left,targetSum-root->val);
+        bool r=false;
+        if(root->right!=NULL)
+        r=Helper(root->right,targetSum-root->val);
+        return l||r;
+    }
+    bool hasPathSum(TreeNode* root, int targetSum) 
+    {
         if(root==NULL)
         return false;
-        if(sum==root->val&&root->left==NULL&&root->right==NULL)
-        return true;
-        //case 1-
-        bool left=helper(root->left,sum-root->val);
-        //case 2-
-        bool right=helper(root->right,sum-root->val);
-        return left||right;
-    }
-    bool hasPathSum(TreeNode* root, int targetSum)
-    {
-        //approach
-        //1.trying out all paths and will check if any path gives mr the 
-        //target sum or not
-        
-        return helper(root,targetSum);
-        
+        return Helper(root,targetSum);   
     }
 };
