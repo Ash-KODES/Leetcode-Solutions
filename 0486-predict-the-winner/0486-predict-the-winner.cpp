@@ -13,8 +13,8 @@ public:
     bool PredictTheWinner(vector<int>& nums) 
     {
       //Removal game dp
-      if(nums.size()==1)
-      return 1;
+      // if(nums.size()==1)
+      // return 1;
       int i=0;
       int j=nums.size()-1;
       int sum=0;
