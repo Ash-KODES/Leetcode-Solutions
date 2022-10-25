@@ -33,10 +33,8 @@ bool containsNearbyAlmostDuplicate(vector<int>& nums, int indexDiff, int valueDi
     bool check=false;
     st.insert(nums[0]);
     for(int i=1;i<n;i++)
-    {
-        
+    { 
         auto it=st.lower_bound(nums[i]);
-        // cout<<nums[i]<<" "<<*it<<endl;
         if(st.size()>0&&it!=st.begin())
         {
             auto temp=it;
@@ -53,8 +51,6 @@ bool containsNearbyAlmostDuplicate(vector<int>& nums, int indexDiff, int valueDi
             st.erase(st.find(nums[i-indexDiff]));
         }
         st.insert(nums[i]);
-        // cout<<check<<endl;
-    
     }
     return check;
 }
